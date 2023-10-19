@@ -7,13 +7,11 @@ Created on Tue Mar 12 21:57:23 2019
 
 import serial.tools.list_ports
 import serial
-
 import time
-
 from telnetlib import Telnet
 import requests
 
-
+__all__ = ["AdauraAttenuator"]
 class AdauraAttenuator(object):
     """A class representing an Attenuator"""
     
@@ -36,7 +34,7 @@ class AdauraAttenuator(object):
     
     @staticmethod    
     def find_attenuator(requested_serial):
-        found_attenuators = ADAURAAttenuator.find_attenuators()
+        found_attenuators = AdauraAttenuator.find_attenuators()
         
         for _serial_number, device in found_attenuators:
             if _serial_number == requested_serial.upper():
@@ -70,7 +68,7 @@ class AdauraAttenuator(object):
         if self._connection_type is self.CONN_USB:
             if comport is None and serial_number is not None:
                 # Find a comport given the serial number
-                self.comport = ADAURAAttenuator.find_attenuator(serial_number)
+                self.comport = AdauraAttenuator.find_attenuator(serial_number)
             
             elif comport is not None:
                 # Open a serial  
@@ -343,8 +341,8 @@ if __name__ == "__main__":
     
     # Automatically open a serial attenuator if found.
     if len(found_attenuators) is 1:
-       found_attenuator = found_attenuators[0]
-        attenuator = ADAURAAttenuator(serial_number=found_attenuator[0],
+        found_attenuator = found_attenuators[0]
+        attenuator = AdauraAttenuator(serial_number=found_attenuator[0],
                                       comport = found_attenuator[1],
                                       )
     
