@@ -1,22 +1,24 @@
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "adaura_attenuator"
-version = "0.1"
+version = "0.0.1"
+description = "An interface to Adaura Technologies Programmable RF Attenuators"
+urls.Repository = "https://github.zhaw.ch/InES/AdauraAttenuator"
 authors = [
   { name="supraconex", email="supraconex@supraconex.org" },
+  { name="Flavio Felder", email="felf@zhaw.ch" },
 ]
-description = "An interface to Adaura Technologies Programmable RF Attenuators"
 readme = "README.md"
 requires-python = ">=3.8"
+dependencies = [
+    "pyserial",
+    "requests",
+]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
 
-[project.urls]
-"Homepage" = "https://github.com/supraconex.org"
-"Bug Tracker" = "https://github.com/supraconex.org/issues"
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
